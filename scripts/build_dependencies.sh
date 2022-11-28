@@ -61,6 +61,19 @@ python_module_test () {
     python3 -c "import $1"
 }
 
+python_update () {
+    pip3 install six
+    pip3 install pyparsing
+    pip3 install meson
+    pip3 install gettext
+    pip3 install glib-utils
+    pip3 install libgpg-error
+    pip3 install xcrun
+    pip3 install otool
+    pip3 install install_name_tool
+    pip3 install bison
+}
+
 #check_env () {
     #command -v python3 >/dev/null 2>&1 || { echo >&2 "${RED}You must install 'python3' on your host machine.${NC}"; exit 1; }
     #python_module_test six >/dev/null 2>&1 || { echo >&2 "${RED}'six' not found in your Python 3 installation.${NC}"; exit 1; }
