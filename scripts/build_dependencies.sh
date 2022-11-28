@@ -794,7 +794,7 @@ export CXXFLAGS
 export OBJCFLAGS
 export LDFLAGS
 
-check_env
+#check_env
 echo "${GREEN}Starting build for ${PLATFORM_FAMILY_NAME} ${ARCH} [${NCPU} jobs]${NC}"
 
 if [ ! -f "$BUILD_DIR/BUILD_SUCCESS" ]; then
