@@ -235,7 +235,6 @@ jobs:
     name: Package (iOS IPA)
     runs-on: ${{ fromJSON(needs.configuration.outputs.github-runner) }}
     needs: [configuration, build-utm]
-    if: github.event_name == 'release' || github.event.inputs.test_release == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -277,7 +276,6 @@ jobs:
     name: Package (iOS-TCI IPA)
     runs-on: ${{ fromJSON(needs.configuration.outputs.github-runner) }}
     needs: [configuration, build-utm]
-    if: github.event_name == 'release' || github.event.inputs.test_release == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -319,7 +317,6 @@ jobs:
     name: Package (iOS HV)
     runs-on: ${{ fromJSON(needs.configuration.outputs.github-runner) }}
     needs: [configuration, build-utm]
-    if: github.event_name == 'release' || github.event.inputs.test_release == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -335,13 +332,11 @@ jobs:
           ./scripts/package.sh ipa-hv UTM.xcarchive .
           mv UTM.ipa UTM.HV.ipa
       - name: Upload Artifact
-        if: github.event_name != 'release'
         uses: actions/upload-artifact@v3
         with:
           name: UTM-HV-ipa
           path: UTM.HV.ipa
       - name: Upload Release Asset
-        if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -354,7 +349,6 @@ jobs:
     name: Package (iOS DEB)
     runs-on: ${{ fromJSON(needs.configuration.outputs.github-runner) }}
     needs: [configuration, build-utm]
-    if: github.event_name == 'release' || github.event.inputs.test_release == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
